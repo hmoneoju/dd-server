@@ -1,4 +1,4 @@
-package com.dimensiondata.resource.v1;
+package com.dimensiondata.resource;
 
 public class Urls {
 

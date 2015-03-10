@@ -1,6 +1,6 @@
-package com.dimensiondata.resource.v1;
+package com.dimensiondata.resource;
 
-import com.dimensiondata.ApplicationConfiguration;
+import com.dimensiondata.Application;
 import com.dimensiondata.domain.Server;
 import com.dimensiondata.repository.ServerRepository;
 import com.google.gson.Gson;
@@ -18,15 +18,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.dimensiondata.resource.v1.Urls.SERVERS_COUNT_URL;
-import static com.dimensiondata.resource.v1.Urls.SERVERS_URL;
 import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
 import static com.jayway.restassured.http.ContentType.JSON;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest
 public class ServersResourceIT {
@@ -51,7 +48,7 @@ public class ServersResourceIT {
             contentType(JSON).
             body(servers).
         when().
-            post(SERVERS_URL).
+            post(Urls.SERVERS_URL).
         then().
             statusCode(HttpStatus.OK.value());
     }
@@ -66,8 +63,10 @@ public class ServersResourceIT {
 
     @Test
     public void count() {
+        given().
+            contentType(JSON).
         when().
-            get(SERVERS_COUNT_URL).
+            get(Urls.SERVERS_COUNT_URL).
         then().
             contentType(JSON).
             statusCode(HttpStatus.OK.value()).
@@ -79,7 +78,7 @@ public class ServersResourceIT {
         given().
             contentType(JSON).
         when().
-            get(SERVERS_URL).
+            get(Urls.SERVERS_URL).
         then().
             contentType(JSON).
             statusCode(HttpStatus.OK.value()).

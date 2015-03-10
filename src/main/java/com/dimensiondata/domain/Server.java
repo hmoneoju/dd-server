@@ -1,16 +1,21 @@
 package com.dimensiondata.domain;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement(name="server")
 public class Server {
 
     @Id
     private Long id;
 
     @Column(nullable = false)
+    @NotBlank
     private String name;
 
     protected Server() {

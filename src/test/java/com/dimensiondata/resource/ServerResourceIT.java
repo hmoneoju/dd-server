@@ -1,6 +1,6 @@
-package com.dimensiondata.resource.v1;
+package com.dimensiondata.resource;
 
-import com.dimensiondata.ApplicationConfiguration;
+import com.dimensiondata.Application;
 import com.dimensiondata.domain.Server;
 import com.dimensiondata.repository.ServerRepository;
 import com.google.gson.Gson;
@@ -15,12 +15,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static com.dimensiondata.resource.v1.Urls.SERVER_URL;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ApplicationConfiguration.class)
+@SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest
 public class ServerResourceIT {
@@ -41,9 +40,9 @@ public class ServerResourceIT {
             contentType(ContentType.JSON).
             body(serverToCreate).
         when().
-            post(SERVER_URL + "/" + serverToCreate.getId()).
+            post(Urls.SERVER_URL + "/" + serverToCreate.getId()).
         then().
-            statusCode(HttpStatus.OK.value());
+            statusCode(HttpStatus.CREATED.value());
     }
 
     @Test
@@ -52,7 +51,7 @@ public class ServerResourceIT {
             contentType(ContentType.JSON).
             body(serverToCreate).
         when().
-            post(SERVER_URL+"/"+serverToCreate.getId()).
+            post(Urls.SERVER_URL+"/"+serverToCreate.getId()).
         then().
             statusCode(HttpStatus.CONFLICT.value());
     }
@@ -65,14 +64,14 @@ public class ServerResourceIT {
             contentType(ContentType.JSON).
             body(serverToCreate).
         when().
-            put(SERVER_URL+"/"+serverToCreate.getId()).
+            put(Urls.SERVER_URL+"/"+serverToCreate.getId()).
         then().
             statusCode(HttpStatus.OK.value());
 
         given().
             contentType(ContentType.JSON).
         when().
-            get(SERVER_URL+"/"+serverToCreate.getId()).
+            get(Urls.SERVER_URL+"/"+serverToCreate.getId()).
         then().
             statusCode(HttpStatus.OK.value()).
             body(equalTo(new Gson().toJson(serverToCreate)))
@@ -85,14 +84,14 @@ public class ServerResourceIT {
             contentType(ContentType.JSON).
         body(serverToCreate).
         when().
-            delete(SERVER_URL+"/"+serverToCreate.getId()).
+            delete(Urls.SERVER_URL+"/"+serverToCreate.getId()).
         then().
-            statusCode(HttpStatus.OK.value());
+            statusCode(HttpStatus.NO_CONTENT.value());
 
         given().
             contentType(ContentType.JSON).
         when().
-            get(SERVER_URL+"/"+serverToCreate.getId()).
+            get(Urls.SERVER_URL+"/"+serverToCreate.getId()).
         then().
         statusCode(HttpStatus.NOT_FOUND.value());
     }
