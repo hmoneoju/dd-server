@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = Urls.SERVER_URL,
-                produces = {"application/json","application/xml","text/xml"},
-                consumes = {"application/json","application/xml","text/xml"})
+@RequestMapping(value = Urls.SERVER_URL)
 public class ServerResource extends AbstractResource {
 
     @RequestMapping(value ="/{id}", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     public Server create(@PathVariable Long id,
                          @RequestBody @Valid Server server) throws ServerAlreadyExistsException {
 
@@ -25,6 +24,7 @@ public class ServerResource extends AbstractResource {
 
     @RequestMapping(value ="/{id}", method = RequestMethod.PUT )
     @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
     public Server update(@PathVariable Long id,
                          @RequestBody @Valid Server server) throws ServerNotFoundException {
 

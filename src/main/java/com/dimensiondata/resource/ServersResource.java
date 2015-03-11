@@ -8,9 +8,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = Urls.SERVERS_URL,
-                produces = {"application/json","application/xml","text/xml"},
-                consumes = {"application/json","application/xml","text/xml"})
+@RequestMapping(value = Urls.SERVERS_URL)
 public class ServersResource extends AbstractResource {
 
     @RequestMapping(method = RequestMethod.POST)
