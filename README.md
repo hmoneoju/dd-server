@@ -10,7 +10,7 @@ You just need maven 3.2 and java 7 or above. As any other standard maven project
 
 The artifact produced by maven is an executable jar (with an embedded DB and Tomcat), so you can start the REST service using _java -jar_.
 
-*hector@Iscariot ~/IdeaProjects/dd-client $java -jar ./target/dd-server-1.0.jar* &
+*hector@Iscariot ~/IdeaProjects/dd-server $java -jar ./target/dd-server-1.0.jar* &
 
 Logs are saved into ./logs/dimensiondata.log file
 
