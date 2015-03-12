@@ -3,11 +3,9 @@ package com.dimensiondata.service;
 import com.dimensiondata.domain.Server;
 import com.dimensiondata.service.exception.ServerAlreadyExistsException;
 import com.dimensiondata.service.exception.ServerNotFoundException;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface ServerService {
 
     Server createServer(Long id, Server server) throws ServerAlreadyExistsException;
