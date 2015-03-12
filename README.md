@@ -21,11 +21,11 @@ archetype but to the next level.
 
 The service is a classic MVC layered in:
 
-1) Persistence - I have used Spring Data / JPA. The ServerRepository offers an interface to the service layer. The service is configured to use
+1. Persistence - I have used Spring Data / JPA. The ServerRepository offers an interface to the service layer. The service is configured to use
 an in-memory DB.
-2) Service -  The service layer defines an interface with the Server operations which will be exposed to the resource layer. It talks with the
+2. Service -  The service layer defines an interface with the Server operations which will be exposed to the resource layer. It talks with the
 pesistence layer
-3) Resource - is the public interface for other services/applications/clients. It is a rest endpoint built with Spring Rest Controller. The service
+3. Resource - is the public interface for other services/applications/clients. It is a rest endpoint built with Spring Rest Controller. The service
 is configured to run in an embedded Tomcat server. The port used is 8080
 
 I have enabled the production mode feature within the SpringBoot configuration, which means we get for free realtime metrics http://localhost:8080/metrics
